@@ -11,14 +11,14 @@ const Input = forwardRef(function Input({
         <div className="w-full">
             {
                 label && <label 
-                className=""
+                className="inline-block mb-1 pl-1"
                 htmlFor={id}>
                     { label }
                 </label>
             }
             <input 
             type={type} 
-            className={`${className}`}
+            className={`px-3 py-2 rounded-lg bg-white outline-none border border-gray-200 w-full ${className}`}
             ref={ref}
             {...props}
             id={id}

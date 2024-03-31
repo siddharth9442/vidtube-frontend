@@ -9,7 +9,7 @@ const Button = ({
     return (
         <button
             type={type}
-            className={`${className}`}
+            className={`px-4 py-2 rounded-md bg-blue-600 text-white ${className}`}
             {...props}
         >
             {children}
@@ -17,4 +17,6 @@ const Button = ({
     )
 }
 
-export default Button;
+export {
+    Button
+};
