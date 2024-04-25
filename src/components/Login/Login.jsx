@@ -5,36 +5,32 @@ import Input from "../Input/Input";
 import { useForm } from "react-hook-form";
 import { Button } from "../Button/Button";
 import { useDispatch } from "react-redux";
-import { login as authLogin } from '../../store/authSlice'
+import { login as authLogin } from "../../store/authSlice";
 import { loginUser, getCurrentUser } from "../conf/User";
 
 const Login = () => {
   const [error, setError] = useState("");
   const { register, handleSubmit } = useForm();
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const login = async (data) => {
-    setError("")
+    setError("");
     try {
-      
-      const response = await loginUser(data)
-      .then(data => data.data.data)
+      const response = await loginUser(data).then((data) => data.data.data);
 
       if (response) {
-        const user = await getCurrentUser()
-        .then(data => data.data.data)
-        if(user) dispatch(authLogin(user))
-        navigate('/')
+        const user = await getCurrentUser().then((data) => data.data.data);
+        if (user) dispatch(authLogin(user));
+        navigate("/");
       }
-      
     } catch (error) {
-      setError(error.message)
+      setError(error.message);
     }
-  }
+  };
 
   return (
-    <div className=" flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full">
       <div className="mx-auto w-full bg-gray-100 rounded-xl max-w-lg p-10 border border-black/10">
         <div className="flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
