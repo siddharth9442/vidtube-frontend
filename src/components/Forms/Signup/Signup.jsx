@@ -1,14 +1,19 @@
 import React, { useState } from "react";
-import Logo from "../Logo/Logo";
+import Logo from "../../Logo/Logo";
 import { Link } from "react-router-dom";
-import Input from "../Input/Input";
+import Input from "../../Input/Input";
 import { useForm } from "react-hook-form";
-import { Button } from "../Button/Button";
-import { getCurrentUser, registerUser } from "../conf/User";
+import { Button } from "../../Button/Button";
+import { useDispatch } from "react-redux";
+import { getCurrentUser, registerUser } from "../../conf/User";
+import { login as authLogin } from "../../../store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [error, setError] = useState();
   const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const createAccount = async (data) => {
     setError("");
@@ -26,7 +31,7 @@ const Signup = () => {
         (data) => data.data.data
       );
       if (response) {
-        const user = await getCurrentUser().then((data) => data.data.data);
+        const user = await getCurrentUser();
         if (user) dispatch(authLogin(user));
         navigate("/");
       }
@@ -36,7 +41,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full mt-8">
       <div className="mx-auto w-full max-w-lg bg-gray-100 p-10 rounded-lg border border-black/10">
         <div className="flex justify-center">
           <span className="inline-block w-full max-w-[100px]">

@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../Input/Input";
 
-const Navigation = () => {
+const SearchBar = () => {
   return (
     <div className="flex bg-gray-600 py-4 px-6 gap-x-8 item-center">
       <Input
@@ -13,4 +13,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default SearchBar;
